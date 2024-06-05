@@ -24,11 +24,11 @@ export async function exportFromDune(): Promise<void> {
   const data = resultRes.result.rows
     .map((row) => {
       // Need to change correct field name in your query
-      return `${row.address}\t${row.amount_original}`;
+      return `${row.address},${row.amount_original}`;
     })
     .join('\n');
 
-  const csvData = ['address', data].join('\n');
+  const csvData = ['address,value', data].join('\n');
 
   const outputDir = path.join(process.cwd(), 'output');
   const outputFile = path.join(outputDir, 'dune_export.csv');
